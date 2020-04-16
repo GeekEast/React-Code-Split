@@ -1,12 +1,12 @@
 import React from 'react';
 import SharedComponent from './SharedComponent';
 import moment from 'moment';
-import _ from 'lodash';
+import { get } from 'lodash';
 
 const MyComponent = () => {
   return (
     <div>
-      {_.get([1,2,3],0)}
+      {get([1, 2, 3], 0)}
       {moment().format()}
       <SharedComponent></SharedComponent>
     </div>
