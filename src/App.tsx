@@ -1,12 +1,23 @@
-import React from 'react';
-import { MyComponent, ShitComponent } from './components';
-function App() {
+import React, { Fragment } from 'react';
+import { Router, Link } from '@reach/router';
+import Time from './Time';
+import Calendar from './Calendar';
+
+const App = () => {
   return (
-    <div className="App">
-      <MyComponent />
-      <ShitComponent />
-    </div>
+    <Fragment>
+      <div><Link to="time">Time</Link></div>
+      <div><Link to="calendar">Calendar</Link></div>
+      
+      <Router>
+        <Time path="time"/>
+        <Calendar path="calendar"/>
+      </Router>
+    </Fragment>
   );
-}
+};
 
 export default App;
+
+
+
