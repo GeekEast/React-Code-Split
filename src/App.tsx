@@ -1,9 +1,17 @@
-import React, { Fragment, Suspense, lazy } from 'react';
+import React, { Fragment } from 'react';
 import { Router, Link } from '@reach/router';
 // import Time from './Time';
 // import Calendar from './Calendar';
-const Time = lazy(() => import('./Time'));
-const Calendar = lazy(() => import('./Calendar'));
+import Loadable from 'react-loadable';
+
+const Time = Loadable({
+  loader: () => import('./Time'),
+  loading: () => <div>Loading</div>,
+});
+const Calendar = Loadable({
+  loader: () => import('./Calendar'),
+  loading: () => <div>Loading</div>,
+});
 
 const App = () => {
   return (
@@ -14,12 +22,10 @@ const App = () => {
       <div>
         <Link to="calendar">Calendar</Link>
       </div>
-      <Suspense fallback={<div>loading</div>}>
-        {/* <Router> */}
-        <Time path="time" />
-        <Calendar path="calendar" />
-        {/* </Router> */}
-      </Suspense>
+      {/* <Router> */}
+      <Time path="time" />
+      <Calendar path="calendar" />
+      {/* </Router> */}
     </Fragment>
   );
 };
