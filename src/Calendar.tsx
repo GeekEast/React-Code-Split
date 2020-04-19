@@ -7,7 +7,7 @@ const Calendar = (props: RouteComponentProps) => {
     return (
       <div>
         <br />
-        Time: {moment?.format()}
+        Calendar: {moment?.format()}
       </div>
     );
   };
