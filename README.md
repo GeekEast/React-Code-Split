@@ -26,9 +26,11 @@ const MyComponent = Loadable({
 ```
 
 ### Compare
-- lazy and Suspense is embeded in React, no extra cost to import, but the size of Loadable is very small as well.
-- 1 suspense 1 fallback, n suspeses n fallbacks
-- 1 loadable 1 fallback, n suspense n fallbacks
+- `lazy` and `Suspense` is embeded in React, no extra cost to import, but the size of `Loadable` is very small as well.
+- `1 suspense 1 fallback` vs `1 loadable 1 fallback`
+- You don't need `Suspense` for loadable
+> Conclusion: Loadable is like a encapsulation of `lazy` and `Suspense`
+
 
 ## Lazy Load Modules
 
