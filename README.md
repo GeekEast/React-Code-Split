@@ -1,10 +1,3 @@
-<style>
-table {
-margin: auto;
-border: 1px solid red
-}
-</style>
-
 ## Lazy Load Components
 ### React lazy and Suspense
 - Declare `Suspense` and `fallback`
