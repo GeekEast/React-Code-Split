@@ -100,16 +100,14 @@ import(/* webpackChunkName: "my_lib" */ 'lodash');
 
 ## Practice
 - **首先**, 通过`source-map-explorer`来分析`bundle`组成，再分析**大**的module在组件中的使用情况
-- **其次**, 对于只在`一个`组件中出现的module, 既可以lazy load **component**, 也可以lazy load module **without** hooks; 对于在`多个`组件中出现的module, 比如`moment.js`, 使用lazy load **with** hooks.
-- **最后**, 如果你像让多个module封装成一个chunk, 使用`/* webpackChunkName: "my_lib" */`这个webpack自带的magic comments功能
-
-## Summary
+- **其次**, 分析组件和module的对应关系
 | Component | Module |   Code Split    |
 | :-------: | :----: | :-------------: |
 |     1     |   1    | Component Split |
 |     1     |   n    | Component Split |
 |     n     |   1    |  Module Split   |
 |     n     |   n    |  Module Split   |
+- **最后**, 如果你像让多个module封装成一个chunk, 使用`/* webpackChunkName: "my_lib" */`这个webpack自带的magic comments功能
 
 ## Future
 - 在后续项目开发中，对于**非常大的包**，要提前做好`lazy-load`分析和处理，在写代码的时候可以借助`import cost`这个`vscode extension`
