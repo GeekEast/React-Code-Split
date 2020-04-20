@@ -2,7 +2,7 @@
 ### React lazy and Suspense
 - Declare `Suspense` and `fallback`
 ```javascript
-import {Suspense } from 'react';
+import { Suspense } from 'react';
 // 只需要使用一次Suspense
 <Suspense fallback={Fallback}>
   <Router>
@@ -26,10 +26,11 @@ const MyComponent = Loadable({
 ```
 
 ### Compare
-- `lazy` and `Suspense` is embeded in React, no extra cost to import, but the size of `Loadable` is very small as well.
-- `1 suspense 1 fallback` vs `1 loadable 1 fallback`
-- You don't need `Suspense` for loadable
-> Conclusion: Loadable is like a encapsulation of `lazy` and `Suspense`
+- **Tie**: `lazy` and `Suspense` is embeded in React, no extra cost to import, but the size of `Loadable` is very small as well.
+- **React wins**: `1 suspense 1 fallback` vs `1 loadable 1 fallback`
+- **Loadable wins**: You don't need `Suspense` for loadable
+- **Loadable wins**: Loadable gives more features like error handling, prefetch
+> Conclusion: Loadable is just an **encapsulation** of `lazy` and `Suspense`
 
 
 ## Lazy Load Modules
@@ -82,6 +83,13 @@ const useMoment = () => {
 
 export default useMoment;
 ```
+#### Merge Modules
+- merge `moment.js` and `lodash.js` together, any chunkname you want
+```javascript
+import(/* webpackChunkName: "my_lib" */ 'moment');
+import(/* webpackChunkName: "my_lib" */ 'lodash');
+```
+> if you want them `separate`, just remove the comments! Easy!
 
 #### Conclusion
 - You can now do lazy load on **any** modules
@@ -89,3 +97,12 @@ export default useMoment;
 ### Situation 2
 - 假设在引入moment的所有组件中全部实现了lazy load hooks，那一个页面引入moment后，进入其他页面，是不是还要重新request引入一次moment呢？
   - 初步猜想: 不会, js文件会被浏览器缓存，不会重新request
+
+## Practice
+- **首先**, 通过`source-map-explorer`来分析`bundle`组成，再分析**大**的module在组件中的使用情况
+- **其次**, 对于只在`一个`组件中出现的module, 既可以lazy load **component**, 也可以lazy load module **without** hooks; 对于在`多个`组件中出现的module, 比如`moment.js`, 使用lazy load **with** hooks.
+- **最后**, 如果你像让多个module封装成一个chunk, 使用`/* webpackChunkName: "my_lib" */`这个webpack自带的magic comments功能
+
+## Future
+- 在后续项目开发中，对于**非常大的包**，要提前做好`lazy-load`分析和处理，在写代码的时候可以借助`import cost`这个`vscode extension`
+- 如有需要，可以使用`prefetch`预先在**后台**加载`特定`的lib，可以让人感觉不到任何`lazy-load`带来的延迟
