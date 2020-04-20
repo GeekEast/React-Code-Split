@@ -101,12 +101,14 @@ import(/* webpackChunkName: "my_lib" */ 'lodash');
 ## Practice
 - **首先**, 通过`source-map-explorer`来分析`bundle`组成，再分析**大**的module在组件中的使用情况
 - **其次**, 分析组件和module的对应关系
+
 | Component | Module |   Code Split    |
 | :-------: | :----: | :-------------: |
 |     1     |   1    | Component Split |
 |     1     |   n    | Component Split |
 |     n     |   1    |  Module Split   |
 |     n     |   n    |  Module Split   |
+
 - **最后**, 如果你像让多个module封装成一个chunk, 使用`/* webpackChunkName: "my_lib" */`这个webpack自带的magic comments功能
 
 ## Future
