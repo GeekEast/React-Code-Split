@@ -103,6 +103,14 @@ import(/* webpackChunkName: "my_lib" */ 'lodash');
 - **其次**, 对于只在`一个`组件中出现的module, 既可以lazy load **component**, 也可以lazy load module **without** hooks; 对于在`多个`组件中出现的module, 比如`moment.js`, 使用lazy load **with** hooks.
 - **最后**, 如果你像让多个module封装成一个chunk, 使用`/* webpackChunkName: "my_lib" */`这个webpack自带的magic comments功能
 
+## Summary
+| Component | Module |   Code Split    |
+| :-------: | :----: | :-------------: |
+|     1     |   1    | Component Split |
+|     1     |   n    | Component Split |
+|     n     |   1    |  Module Split   |
+|     n     |   n    |  Module Split   |
+
 ## Future
 - 在后续项目开发中，对于**非常大的包**，要提前做好`lazy-load`分析和处理，在写代码的时候可以借助`import cost`这个`vscode extension`
 - 如有需要，可以使用`prefetch`预先在**后台**加载`特定`的lib，可以让人感觉不到任何`lazy-load`带来的延迟
