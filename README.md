@@ -100,7 +100,7 @@ import(/* webpackChunkName: "my_lib" */ 'lodash');
 
 ## Practice
 - **首先**, 通过`source-map-explorer`来分析`bundle`组成，再分析**大**的module在组件中的使用情况
-- **其次**, 分析组件和module的对应关系
+- **其次**, 分析组件和module的对应关系, 一般来说`Component Split`就已经足够了
 
 | Component | Module |   Code Split    | Complexity  |
 | :-------: | :----: | :-------------: | :----------:|
